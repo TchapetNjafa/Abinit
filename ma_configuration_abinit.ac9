@@ -1,0 +1,172 @@
+# 1 # compiler
+#sudo apt install gfortran
+
+# 2 # MPI libraries - choice for Open MPI
+#sudo apt install mpi-default-dev libopenmpi-dev
+
+# 3 # math libraries - choice for lapack and blas
+#sudo apt install liblapack-dev libblas-dev
+
+# 4 # mandatory libraries
+#sudo apt install libhdf5-dev libnetcdf-dev libnetcdff-dev libpnetcdf-dev libxc-dev
+#sudo apt install libfftw3-dev libxml2-dev gawk mawk
+#Installer manuellement les fichiers sources (téléchager) de
+#libPSML, XMLF90, Wannier90, BigDFT qui se trouvent dans le dossier
+#abinit+fallbacks, (difficile de faire fonctionner wannier90 et BigDFT mais ok)
+
+#Définition du répertoire d'installation
+prefix=/usr/local/Myabinit
+
+# Supported levels:
+#
+#     * none       : disable optimizations
+#     * custom     : enable optimizations with user-defined flags
+#     * safe       : build slow and very reliable code
+#     * standard   : build fast and reliable code
+#     * aggressive : build very fast code, regardless of reliability
+#
+# Levels other than no and yes are "profile mode" levels in which
+# user-defined flags are overriden
+#
+# Note:
+#
+#     * this option is ignored when the debug is level is higher than basic
+#
+with_optim_flavor="custom"
+with_debug_flavor="basic"
+
+#with_mpi="yes"
+with_mpi_flavor="auto"
+enable_mpi_io="yes"
+
+#MKL
+with_linalg_flavor="mkl"
+LINALG_FCFLAGS="-I/usr/include/mkl/intel64/lp64"
+LINALG_CPPFLAGS="-I/usr/include/mkl"
+LINALG_LIBS="-L/usr/lib/x86_64-linux-gnu -Wl,--start-group  -lmkl_gf_lp64 -lmkl_sequential -lmkl_core -Wl,--end-group"
+
+with_fft_flavor="dfti"
+FFT_FCFLAGS="-I/usr/include/mkl"
+
+# BigDFT (depends on LibXC, see below)
+# Website: http://bigdft.org/
+# Enable BigDFT support
+
+# Fortran flags for BigDFT (default is unset)
+#
+BIGDFT_FCFLAGS="-I/home/tchapet/bigdft-suite-devel/build/install/include -I/home/tchapet/bigdft-suite-devel/build/install/include/futile"
+
+# Link flags for BigDFT (default is unset)
+#
+#BIGDFT_LDFLAGS=""
+
+# Library flags for BigDFT (default is unset)
+#
+BIGDFT_LIBS="-L/home/tchapet/bigdft-suite-devel/build/install/lib -L/lib -L/home/tchapet/bigdft-suite-devel/build/install/lib -L/lib -L/home/tchapet/bigdft-suite-devel/build/install/lib -L/lib -L/home/tchapet/bigdft-suite-devel/build/install/lib -L/lib -L/home/tchapet/bigdft-suite-devel/build/install/lib -L/lib -L/home/tchapet/bigdft-suite-devel/build/install/lib -L/lib -L/home/tchapet/bigdft-suite-devel/build/install/lib -L/lib -L/home/tchapet/bigdft-suite-devel/build/install/lib -L/lib -lbigdft-1 -labinit -lorbs -latlab-1 -lfutile-1 -llapack -lblas -lyaml -ldl -lrt -lfutile-1 -llapack -lblas -lyaml -ldl -lrt -latlab-1 -lfutile-1 -llapack -lblas -lyaml -ldl -lrt -lfutile-1 -llapack -lblas -lyaml -ldl -lrt -lxcf90 -lxc -lGaIn -lCheSS-1 -lPSolver-1 -latlab-1 -lfutile-1 -llapack -lblas -lyaml -ldl -lrt -lfutile-1 -llapack -lblas -lyaml -ldl -lrt -lNTPoly -lPSolver-1 -latlab-1 -lfutile-1 -llapack -lblas -lyaml -ldl -lrt -lfutile-1 -llapack -lblas -lyaml -ldl -lrt"
+
+
+# XML2 library (used by multibinit)
+#with_libxml2="yes"
+LIBXML2_FCFLAGS="-I/usr/lib/x86_64-linux-gnu"
+LIBXML2_LIBS="-L/usr/include/libxml2/libxml -lxmlf90"
+
+#HDF5
+#with_hdf5="/usr/include/hdf5"
+with_hdf5="yes" 
+# Location of the h5cc (or h5pcc) compiler (default is unset)
+#
+# Note: This parameter can greatly help the build system of ABINIT in
+#       selecting the correct version of HDF5.
+#
+H5CC="/usr/bin/h5cc"
+
+# LibXC
+with_libxc="yes"
+
+
+# Enable LibPSML support
+#with_libpsml="yes"
+# Fortran flags for the LibPSML library (default is unset)
+#
+LIBPSML_FCFLAGS="-I/usr/local/libpsml/include/libpsml/GNU-11.3.0"
+
+# Link flags for the LibPSML library (default is unset)
+#
+#LIBPSML_LDFLAGS=""
+
+# Library flags for LibPSML (default is unset)
+#
+LIBPSML_LIBS="-L/usr/local/libpsml/lib -lpsml"
+
+
+# Enable XMLF90 support (default is no)
+#
+#with_xmlf90="yes"
+XMLF90_FCFLAGS="-I/usr/local/xmlf90/include/xmlf90/GNU-11.3.0"
+
+# Link flags for the LibPSML library (default is unset)
+#
+#XMLF90_LDFLAGS=""
+
+# Link flags for the LibPSML library (default is unset)
+#
+XMLF90_LIBS="-L/usr/local/xmlf90/lib -lxmlf90"
+
+# NetCDF
+with_netcdf="yes"
+
+# NetCDF-Fortran
+with_netcdf_fortran="yes"
+
+# Enable Wannier90 support (default is no)
+#
+#with_wannier90="yes"
+#WANNIER90_FCFLAGS="-I/usr/local/include/wannier90"
+
+# Link flags for the Wannier90 library (default is unset)
+#
+#WANNIER90_LDFLAGS=""
+
+# Link flags for the Wannier90 library (default is unset)
+#
+WANNIER90_LIBS="-L/usr/local/wannier90/usr/lib -lwannier"
+
+                       # ------------------------------ #
+
+# TRIQS DMFT library (for CTQMC and rotationally invariant interaction)
+# Website: https://triqs.ipht.cnrs.fr/1.x/index.html (obsolète)
+# https://triqs.github.io/triqs/latest/install.html
+#Pour Ubuntu faire:
+#sudo apt-get update && sudo apt-get install -y software-properties-common apt-transport-https curl
+#source /etc/lsb-release
+#curl -L https://users.flatironinstitute.org/~ccq/triqs3/$DISTRIB_CODENAME/public.gpg | sudo apt-key add -
+#sudo add-apt-repository "deb https://users.flatironinstitute.org/~ccq/triqs3/$DISTRIB_CODENAME/ /"
+#sudo apt install triqs triqs_cthyb triqs_dft_tools triqs_maxent triqs_tprf
+
+# Trigger and install prefix for TRIQS (default is unset)
+#
+#with_triqs="/usr/local"
+
+# Allow Fortran programs to call Python
+#
+#enable_python_invocation="yes"
+#La version de Triqs est la 3.1.1, pour éviter les problèmes de compilation on active
+#enable_triqs_v2_0="yes"
+
+# C++ flags for the TRIQS library (default is unset)
+#
+#TRIQS_CXXFLAGS="-Wno-comma-subscript -std=c++20 -DITERTOOLS_GIT_HASH=d10e86dc38537d06ff596af9aad60b3d76d4ebf0 -DMPI_GIT_HASH=1ae827ccb7c38bfddae8e488bd76d241e0a90e6f -DMPICH_SKIP_MPICXX -DOMPI_SKIP_MPICXX -D_MPICC_H -DH5_GIT_HASH=ad98c8a33d3a7b60da2c80d02ded47629001adf8 -DNDA_GIT_HASH=ba2a47fea74748f67efc09209f775b622fe4f8ab -I/usr/lib/x86_64-linux-gnu/openmpi/include -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -I/usr/include/x86_64-linux-gnu"
+
+# Fortran flags for the TRIQS library (default is unset)
+#
+#TRIQS_FCFLAGS="-DITERTOOLS_GIT_HASH=d10e86dc38537d06ff596af9aad60b3d76d4ebf0 -DMPI_GIT_HASH=1ae827ccb7c38bfddae8e488bd76d241e0a90e6f -DMPICH_SKIP_MPICXX -DOMPI_SKIP_MPICXX -D_MPICC_H -DH5_GIT_HASH=ad98c8a33d3a7b60da2c80d02ded47629001adf8 -DNDA_GIT_HASH=ba2a47fea74748f67efc09209f775b622fe4f8ab -I/usr/lib/x86_64-linux-gnu/openmpi/include -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -I/usr/include/x86_64-linux-gnu"
+
+# Link flags for the TRIQS library (default is unset)
+#
+#TRIQS_LDFLAGS="-Wno-comma-subscript /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so /usr/lib/x86_64-linux-gnu/libgmp.so /usr/lib/x86_64-linux-gnu/libfftw3.so  -L/usr/lib -ltriqs -lcpp2py"
+
+# Link flags for the TRIQS library (default is unset)
+#
+#TRIQS_LIBS="-Wno-comma-subscript /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so /usr/lib/x86_64-linux-gnu/libgmp.so /usr/lib/x86_64-linux-gnu/libfftw3.so  -L/usr/lib -ltriqs -lcpp2py"
+
+                       # ------------------------------ #
