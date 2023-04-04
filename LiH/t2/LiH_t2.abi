@@ -1,0 +1,52 @@
+# Molécule de "LiH" dans une boîte
+
+# Volume d'information à imprimer
+prtvol 2
+
+# Chemin vers les fichiers de pseudopotentiels
+pp_dirpath "../../nc-sr-04_pw_standard_psp8(bon)"
+
+# Définition de la cellule unitaire
+acell 10 10 10
+
+# Nombre de types d'atomes
+ntypat 2
+
+# Pseudopotentiels
+pseudos "Li.psp8, H.psp8"
+
+# Numéro atomique de chaque atome (dans l'ordre)
+znucl 3 1
+
+# Nombre d'atomes
+natom 2
+
+# Types d'atomes
+typat 1 2
+
+# Positions dans l'espace en coordonnées cartésiennes
+xcart
+    0.0 0.0 0.0          # Pour le Li
+    2.835 0.0 0.0          # Pour le H
+    
+# Énergie cinétique de coupure contrôlant le nombre d'ondes planes (Hartree)
+ecut 20
+
+# Option pour les k-points
+kptopt 0
+# Nombre de k-points
+nkpt 1 # Un k point pour isoler le système
+
+##################################
+# Paramètres de la procédure SCF #
+##################################
+
+# Nombre maximal de cycles SCF
+nstep 20
+
+# Tolérance sur la différence des forces
+toldfe 1.0e-6
+
+# En supposant que nous avons affaire avec un isolant
+diemac 2.0
+    

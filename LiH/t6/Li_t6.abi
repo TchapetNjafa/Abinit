@@ -1,0 +1,73 @@
+# Atome de "Li" dans une boîte
+
+#####################################
+# Variables spécifique pour ce test #
+#####################################
+
+# Variable permettant de faire un calcul de spin polarisé
+nsppol 2
+
+# Variable permettant de paramétrer les nombres d'occupation
+occopt 2
+
+# Nombre de bandes pour le "spin up" et le "spin down"
+nband 1 1
+
+# Nombre d'occupation pour les états de "spin up" et "spin down"
+occ 2.0 1.0
+
+# Variable donnant l'estimation du spin d'un atome en hbar/2 (ici on a que le "spin up"!)
+spinat 0.0 0.0 1.0
+
+# Volume d'information à imprimer
+prtvol 2
+
+
+#######################################
+
+# Chemin vers les fichiers de pseudopotentiels
+pp_dirpath "../../nc-sr-04_pw_standard_psp8(bon)"
+
+# Définition de la cellule unitaire
+acell 10 10 10
+
+# Nombre de types d'atomes
+ntypat 1
+
+# Pseudopotentiels
+pseudos "Li.psp8"
+
+# Numéro atomique de chaque atome (dans l'ordre)
+znucl 3
+
+# Nombre d'atomes
+natom 1
+
+# Types d'atomes
+typat 1
+
+# Positions dans l'espace en coordonnées cartésiennes (en Bohr)
+xcart
+    0.0 0.0 0.0
+    
+# Énergie cinétique de coupure contrôlant le nombre d'ondes planes (Hartree)
+ecut 20
+
+# Option pour les k-points
+kptopt 0
+# Nombre de k-points
+nkpt 1 # Un k point pour isoler le système
+
+##################################
+# Paramètres de la procédure SCF #
+##################################
+
+# Nombre maximal de cycles SCF
+nstep 20
+
+# Tolérance sur la différence des forces
+toldfe 1.0e-6
+
+# En supposant que nous avons affaire avec un isolant
+diemac 2.0
+    
