@@ -5,3 +5,4 @@ Répertoire de fichiers accompagnant les vidéos sur ABINIT que nous avons post�
  - [Vidéo2](https://youtu.be/kYFxA6ci_TI): https://youtu.be/kYFxA6ci_TI (durée 32m51s)
  - [Vidéo3](https://youtu.be/9wua1QXF3Os): https://youtu.be/9wua1QXF3Os (durée 33m53s)
  - [Vidéo4](https://youtu.be/RKWtcJ09QTM): https://youtu.be/RKWtcJ09QTM (durée 27m20s)
+ - [Vidéo5](https://youtu.be/19NrbdluFXI): https://youtu.be/19NrbdluFXI (durée 01h23m27s)
